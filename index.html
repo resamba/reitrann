@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Athoillah XII TKJ!</title>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glassmorphism {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-border {
+            position: relative;
+            background-clip: padding-box;
+            border: 1px solid transparent;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: linear-gradient(to right, #6366f1, #ec4899);
+        }
+        /* Typing effect cursor */
+        .cursor-blink::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300 selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glassmorphism border-b border-slate-200/50 dark:border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-pink-500 flex items-center justify-center text-white font-heading font-bold text-xl shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300">
+                    A
+                </div>
+                <span class="font-heading font-bold text-xl tracking-tight">Reitrann<span class="gradient-text">.dev</span></span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Beranda</a>
+                <a href="#about" class="nav-link font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Tentang</a>
+                <a href="#skills" class="nav-link font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Keahlian</a>
+                <a href="#projects" class="nav-link font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Portofolio</a>
+                <a href="#experience" class="nav-link font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Pengalaman</a>
+                <a href="#contact" class="nav-link font-medium text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Kontak</a>
+            </nav>
+
+            <!-- Actions (Theme Toggle & CTA) -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button id="themeToggleBtn" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-slate-200/60 dark:bg-slate-800/60 text-slate-700 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="#contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-pink-600 text-white font-medium text-sm shadow-md shadow-brand-500/25 hover:shadow-lg hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all">
+                    Hubungi Saya
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <div class="flex items-center space-x-3 md:hidden">
+                <button id="mobileThemeToggleBtn" aria-label="Toggle Theme Mobile" class="p-2 rounded-xl bg-slate-200/60 dark:bg-slate-800/60 text-slate-700 dark:text-slate-200">
+                    <i id="mobileThemeIcon" class="fa-solid fa-moon"></i>
+                </button>
+                <button id="mobileMenuBtn" aria-label="Toggle Menu" class="p-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800">
+                    <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="mobile-nav-link block py-2.5 px-4 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Beranda</a>
+            <a href="#about" class="mobile-nav-link block py-2.5 px-4 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Tentang</a>
+            <a href="#skills" class="mobile-nav-link block py-2.5 px-4 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Keahlian</a>
+            <a href="#projects" class="mobile-nav-link block py-2.5 px-4 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Portofolio</a>
+            <a href="#experience" class="mobile-nav-link block py-2.5 px-4 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Pengalaman</a>
+            <a href="#contact" class="mobile-nav-link block py-2.5 px-4 rounded-lg font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Kontak</a>
+            <div class="pt-2">
+                <a href="#contact" class="block w-full text-center py-3 rounded-xl bg-gradient-to-r from-brand-600 to-pink-600 text-white font-medium shadow-md">
+                    Hubungi Saya
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-[calc(100vh-5rem)] flex items-center justify-center relative overflow-hidden py-16 lg:py-24">
+            <!-- Background Glow Elements -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-500/20 dark:bg-brand-500/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-80 h-80 bg-pink-500/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                        <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-brand-50 dark:bg-slate-800/80 border border-brand-200 dark:border-slate-700 text-brand-600 dark:text-brand-400 font-medium text-xs sm:text-sm">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Siswa XII TKJ • Terbuka untuk Project & PKL</span>
+                        </div>
+
+                        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                            Halo, Saya <span class="gradient-text">Athoillah</span>
+                        </h1>
+
+                        <div class="text-xl sm:text-2xl lg:text-3xl font-heading font-semibold text-slate-600 dark:text-slate-300 h-10 flex items-center justify-center lg:justify-start">
+                            <span>Saya seorang&nbsp;</span>
+                            <span id="typewriter" class="gradient-text cursor-blink font-bold"></span>
+                        </div>
+
+                        <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Menguasai administrasi jaringan komputer, konfigurasi MikroTik & Server Linux, serta pengembangan antarmuka web modern yang responsif dan berkinerja tinggi.
+                        </p>
+
+                        <!-- Call To Action Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-pink-600 hover:from-brand-700 hover:to-pink-700 text-white font-semibold shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all text-center flex items-center justify-center space-x-2">
+                                <span>Lihat Portofolio</span>
+                                <i class="fa-solid fa-arrow-right text-sm"></i>
+                            </a>
+                            <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all text-center flex items-center justify-center space-x-2">
+                                <i class="fa-regular fa-paper-plane text-brand-500"></i>
+                                <span>Kontak Saya</span>
+                            </a>
+                        </div>
+
+                        <!-- Quick Social Links -->
+                        <div class="pt-6 flex items-center justify-center lg:justify-start space-x-5 text-slate-500 dark:text-slate-400">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Temukan saya:</span>
+                            <a href="https://github.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-slate-200/60 dark:bg-slate-800 flex items-center justify-center hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 transition-all">
+                                <i class="fa-brands fa-github text-lg"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-slate-200/60 dark:bg-slate-800 flex items-center justify-center hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 transition-all">
+                                <i class="fa-brands fa-linkedin-in text-lg"></i>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-slate-200/60 dark:bg-slate-800 flex items-center justify-center hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 transition-all">
+                                <i class="fa-brands fa-x-twitter text-lg"></i>
+                            </a>
+                            <a href="https://dribbble.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-full bg-slate-200/60 dark:bg-slate-800 flex items-center justify-center hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 transition-all">
+                                <i class="fa-brands fa-dribbble text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Interactive Visual -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <!-- Background Frame & Shadows -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-brand-600 to-pink-500 rounded-3xl rotate-3 scale-105 opacity-50 blur-xl"></div>
+                            
+                            <!-- Main Card -->
+                            <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-2xl overflow-hidden">
+                                <div class="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden mb-6 bg-slate-100 dark:bg-slate-800">
+                                    <img src="image1.jpeg" 
+                                         alt="Athoillah XII TKJ Avatar" 
+                                         class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                                         onerror="this.src='https://placehold.co/600x800/4f46e5/ffffff?text=Athoillah+XII+TKJ'">
+                                    
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-4 left-4 right-4">
+                                        <p class="text-xs text-brand-300 font-semibold uppercase tracking-wider">Status & Jurusan</p>
+                                        <p class="text-white font-medium flex items-center space-x-1.5">
+                                            <i class="fa-solid fa-graduation-cap text-pink-400"></i>
+                                            <span>Siswa XII TKJ (Teknik Komputer & Jaringan)</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Stat Badges -->
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 flex items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center font-bold text-lg">
+                                            XII
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Kelas</p>
+                                            <p class="text-sm font-bold text-slate-800 dark:text-slate-100">TKJ Specialist</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 flex items-center space-x-3">
+                                        <div class="w-10 h-10 rounded-xl bg-pink-500/10 text-pink-500 flex items-center justify-center font-bold text-lg">
+                                            20+
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Praktikum</p>
+                                            <p class="text-sm font-bold text-slate-800 dark:text-slate-100">Lab & Project</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Tentang Saya</h2>
+                    <p class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                        Passionate dalam Menciptakan Kode Clean & Solusi Digital
+                    </p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Bio Text -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <h3 class="text-2xl font-heading font-bold text-slate-900 dark:text-white">
+                            Siapa Saya?
+                        </h3>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Saya adalah Full-Stack Software Engineer yang berpengalaman dalam merancang dan memelihara aplikasi web berskala tinggi. Latar belakang saya mencakup arsitektur frontend dengan React/Next.js serta backend modern berbasis Node.js dan Go.
+                        </p>
+                        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Bagi saya, penulisan kode bukan sekadar membuat program berjalan, tetapi menyajikan pengalaman pengguna yang intuitif, cepat, responsif, serta mudah dipelihara dalam jangka panjang.
+                        </p>
+
+                        <!-- Highlights Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                            <div class="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-start space-x-3">
+                                <i class="fa-solid fa-code text-brand-500 text-xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 dark:text-white text-sm">Clean Code</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Arsitektur terstruktur & Maintainable.</p>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-start space-x-3">
+                                <i class="fa-solid fa-mobile-screen text-pink-500 text-xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 dark:text-white text-sm">Responsive Design</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Tampilan sempurna di semua layar.</p>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-start space-x-3">
+                                <i class="fa-solid fa-gauge-high text-amber-500 text-xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 dark:text-white text-sm">High Performance</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Optimasi kecepatan & SEO friendly.</p>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-start space-x-3">
+                                <i class="fa-solid fa-headset text-emerald-500 text-xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-slate-900 dark:text-white text-sm">Kolaborasi Tim</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Komunikasi lancar & Agile Workflow.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resume Download Button -->
+                        <div class="pt-4">
+                            <button id="downloadCvBtn" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-semibold text-sm hover:bg-brand-600 dark:hover:bg-brand-500 dark:hover:text-white transition-all shadow-md">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Unduh Resume (CV)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information List Card -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-xl space-y-5">
+                            <h3 class="font-heading font-bold text-xl border-b border-slate-200 dark:border-slate-700 pb-3">Informasi Ringkas</h3>
+                            
+                            <div class="space-y-4 text-sm">
+                                <div class="flex justify-between items-center py-1 border-b border-slate-100 dark:border-slate-700/50">
+                                    <span class="text-slate-500 dark:text-slate-400 font-medium">Nama Lengkap</span>
+                                    <span class="font-semibold text-slate-800 dark:text-slate-200">Athoillah</span>
+                                </div>
+
+                                <div class="flex justify-between items-center py-1 border-b border-slate-100 dark:border-slate-700/50">
+                                    <span class="text-slate-500 dark:text-slate-400 font-medium">Kelas / Jurusan</span>
+                                    <span class="font-semibold text-slate-800 dark:text-slate-200">XII TKJ</span>
+                                </div>
+
+                                <div class="flex justify-between items-center py-1 border-b border-slate-100 dark:border-slate-700/50">
+                                    <span class="text-slate-500 dark:text-slate-400 font-medium">Fokus Keahlian</span>
+                                    <span class="font-semibold text-slate-800 dark:text-slate-200">Network & Web Dev</span>
+                                </div>
+
+                                <div class="flex justify-between items-center py-1 border-b border-slate-100 dark:border-slate-100/50">
+                                    <span class="text-slate-500 dark:text-slate-400 font-medium">Email</span>
+                                    <span class="font-semibold text-brand-600 dark:text-brand-400">athoillah@example.com</span>
+                                </div>
+
+                                <div class="flex justify-between items-center py-1">
+                                    <span class="text-slate-500 dark:text-slate-400 font-medium">Status Pekerjaan</span>
+                                    <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-300 rounded-full font-semibold text-xs">Siap PKL / Proyek</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Keahlian Teknis</h2>
+                    <p class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                        Teknologi & Tools Yang Saya Gunakan
+                    </p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Skills Category Tabs Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Frontend Skills Card -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Frontend Development</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">UI & User Experience</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>React.js / Next.js</span>
+                                    <span class="text-brand-600 dark:text-brand-400">92%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-500 to-pink-500 h-full rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>TypeScript</span>
+                                    <span class="text-brand-600 dark:text-brand-400">88%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-500 to-pink-500 h-full rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Tailwind CSS / Vue.js</span>
+                                    <span class="text-brand-600 dark:text-brand-400">95%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-500 to-pink-500 h-full rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend Skills Card -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-pink-50 dark:bg-pink-950/50 text-pink-600 dark:text-pink-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">Backend & Database</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">API & Server Operations</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Node.js / Express</span>
+                                    <span class="text-pink-600 dark:text-pink-400">90%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>PostgreSQL / MySQL</span>
+                                    <span class="text-pink-600 dark:text-pink-400">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>REST API & GraphQL</span>
+                                    <span class="text-pink-600 dark:text-pink-400">89%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full" style="width: 89%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools & Cloud Card -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-lg text-slate-900 dark:text-white">DevOps & Tools</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Infrastructure & Design</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Git / GitHub CI/CD</span>
+                                    <span class="text-purple-600 dark:text-purple-400">92%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Docker / AWS</span>
+                                    <span class="text-purple-600 dark:text-purple-400">78%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full" style="width: 78%"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Figma / UI Prototyping</span>
+                                    <span class="text-purple-600 dark:text-purple-400">86%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-full rounded-full" style="width: 86%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Projects Section -->
+        <section id="projects" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Portofolio Saya</h2>
+                    <p class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                        Karya & Proyek Terbuka
+                    </p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Filter Category Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+                    <button class="filter-btn active-filter px-5 py-2 rounded-xl text-sm font-semibold transition-all" data-category="all">
+                        Semua Proyek
+                    </button>
+                    <button class="filter-btn inactive-filter px-5 py-2 rounded-xl text-sm font-semibold transition-all" data-category="webapp">
+                        Web App
+                    </button>
+                    <button class="filter-btn inactive-filter px-5 py-2 rounded-xl text-sm font-semibold transition-all" data-category="mobile">
+                        Mobile App
+                    </button>
+                    <button class="filter-btn inactive-filter px-5 py-2 rounded-xl text-sm font-semibold transition-all" data-category="uiux">
+                        UI/UX Design
+                    </button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Item 1 -->
+                    <div class="project-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group" data-category="webapp">
+                        <div class="relative overflow-hidden h-52 bg-slate-800">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+                                 alt="E-Commerce Dashboard" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.src='https://placehold.co/800x600/6366f1/ffffff?text=E-Commerce+Dashboard'">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                                <button onclick="openProjectModal(0)" class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="Detail Proyek">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="Kode Sumber">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Web App</span>
+                                <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white mt-1 mb-2 group-hover:text-brand-600 transition-colors">SaaS Analytics Platform</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                                    Platform analitik bisnis real-time dengan chart interaktif, ekspor data PDF/Excel, dan otentikasi JWT.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Next.js</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">TypeScript</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Tailwind</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Item 2 -->
+                    <div class="project-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group" data-category="mobile">
+                        <div class="relative overflow-hidden h-52 bg-slate-800">
+                            <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Fintech Mobile App" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.src='https://placehold.co/800x600/ec4899/ffffff?text=Fintech+Mobile+App'">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                                <button onclick="openProjectModal(1)" class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="Detail Proyek">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <a href="https://github.com" target="_blank" class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="Kode Sumber">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-pink-600 dark:text-pink-400 uppercase tracking-wider">Mobile App</span>
+                                <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white mt-1 mb-2 group-hover:text-brand-600 transition-colors">Smart Wallet Manager</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                                    Aplikasi dompet digital untuk pencatatan keuangan pribadi, QRIS scanner, dan pengingat tagihan bulanan.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">React Native</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Redux</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Item 3 -->
+                    <div class="project-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col group" data-category="uiux">
+                        <div class="relative overflow-hidden h-52 bg-slate-800">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Travel Platform Redesign" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                 onerror="this.src='https://placehold.co/800x600/8b5cf6/ffffff?text=Travel+App+Design'">
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                                <button onclick="openProjectModal(2)" class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="Detail Proyek">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <a href="https://dribbble.com" target="_blank" class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="Dribbble Showcase">
+                                    <i class="fa-brands fa-dribbble"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">UI/UX Design</span>
+                                <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white mt-1 mb-2 group-hover:text-brand-600 transition-colors">Wanderlust Booking App</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                                    Redesain antarmuka pemesanan tiket wisata alam dengan user flow teroptimasi & sistem komponen figma.
+                                </p>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Figma</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">Design System</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium">User Research</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Education Section -->
+        <section id="experience" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Jejak Karir</h2>
+                    <p class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                        Pengalaman Kerja & Edukasi
+                    </p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="max-w-4xl mx-auto relative border-l-2 border-slate-200 dark:border-slate-800 pl-6 sm:pl-8 ml-4 sm:ml-auto space-y-12">
+                    <!-- Timeline Item 1 -->
+                    <div class="relative group">
+                        <!-- Dot Icon -->
+                        <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-brand-600 border-4 border-white dark:border-slate-950 group-hover:scale-125 transition-transform"></div>
+
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-lg transition-shadow">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                                <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white">Senior Full-Stack Engineer</h3>
+                                <span class="px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-950/80 text-brand-600 dark:text-brand-400 text-xs font-semibold w-max mt-1 sm:mt-0">2022 - Sekarang</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-slate-400 font-medium text-sm mb-4">PT Teknologi Nusantara Studio • Full-Time</p>
+                            <ul class="list-disc list-inside text-slate-600 dark:text-slate-300 text-sm space-y-2">
+                                <li>Memimpin tim 6 developer dalam migrasi monolith ke microservices berbasis Node.js.</li>
+                                <li>Meningkatkan kecepatan loading halaman web hingga 40% menggunakan optimasi SSR Next.js.</li>
+                                <li>Merancang REST API secure dengan integrasi Payment Gateway Tripay & Midtrans.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-pink-500 border-4 border-white dark:border-slate-950 group-hover:scale-125 transition-transform"></div>
+
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-lg transition-shadow">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                                <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white">Frontend Web Developer</h3>
+                                <span class="px-3 py-1 rounded-full bg-pink-50 dark:bg-pink-950/80 text-pink-600 dark:text-pink-400 text-xs font-semibold w-max mt-1 sm:mt-0">2020 - 2022</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-slate-400 font-medium text-sm mb-4">Creative Digital Agency • Jakarta</p>
+                            <ul class="list-disc list-inside text-slate-600 dark:text-slate-300 text-sm space-y-2">
+                                <li>Membangun lebih dari 20+ landing page responsif dan interaktif untuk klien korporat.</li>
+                                <li>Berkolaborasi erat dengan tim UI/UX Designer untuk implementasi Figma ke React UI.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-6 h-6 rounded-full bg-purple-500 border-4 border-white dark:border-slate-950 group-hover:scale-125 transition-transform"></div>
+
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-lg transition-shadow">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                                <h3 class="font-heading font-bold text-xl text-slate-900 dark:text-white">Sarjana Komputer (S.Kom)</h3>
+                                <span class="px-3 py-1 rounded-full bg-purple-50 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 text-xs font-semibold w-max mt-1 sm:mt-0">2016 - 2020</span>
+                            </div>
+                            <p class="text-slate-500 dark:text-slate-400 font-medium text-sm mb-4">Universitas Bina Informatika • IPK 3.82</p>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                Fokus pada Rekayasa Perangkat Lunak, Algoritma & Struktur Data, serta Sistem Basis Data Terdistribusi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-slate-100/70 dark:bg-slate-900/40 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Mari Berkomunikasi</h2>
+                    <p class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+                        Punya Proyek Impian? Hubungi Saya
+                    </p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-brand-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <!-- Left Contact Info -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-slate-900 dark:text-white text-sm">Email Saya</h4>
+                                <a href="mailto:alex.pratama@example.com" class="text-sm text-slate-600 dark:text-slate-400 hover:text-brand-600 transition-colors">alex.pratama@example.com</a>
+                            </div>
+                        </div>
+
+                        <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-pink-50 dark:bg-pink-950/50 text-pink-600 dark:text-pink-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-slate-900 dark:text-white text-sm">WhatsApp / Telepon</h4>
+                                <a href="https://wa.me/6281234567890" target="_blank" class="text-sm text-slate-600 dark:text-slate-400 hover:text-pink-600 transition-colors">+62 812-3456-7890</a>
+                            </div>
+                        </div>
+
+                        <div class="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-slate-900 dark:text-white text-sm">Domisili</h4>
+                                <p class="text-sm text-slate-600 dark:text-slate-400">Jakarta Selatan, Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Form -->
+                    <div class="lg:col-span-7">
+                        <form id="contactForm" class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Nama Anda</label>
+                                    <input type="text" id="name" required placeholder="Budi Santoso" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-sm">
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Email Anda</label>
+                                    <input type="email" id="email" required placeholder="budi@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="subject" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Subjek Pesan</label>
+                                <input type="text" id="subject" required placeholder="Diskusi Proyek Web Application" class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-sm">
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Isi Pesan</label>
+                                <textarea id="message" rows="4" required placeholder="Halo Alex, saya tertarik untuk bekerjasama..." class="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-600 to-pink-600 hover:from-brand-700 hover:to-pink-700 text-white font-semibold shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-regular fa-paper-plane"></i>
+                                <span>Kirim Pesan Sekarang</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white border-t border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div>
+                <span class="font-heading font-bold text-xl tracking-tight">Alex<span class="gradient-text">.dev</span></span>
+                <p class="text-xs text-slate-400 mt-1">© 2026 Alex Pratama. Seluruh hak cipta dilindungi.</p>
+            </div>
+
+            <div class="flex items-center space-x-6">
+                <a href="#home" class="text-slate-400 hover:text-white text-sm transition-colors">Beranda</a>
+                <a href="#projects" class="text-slate-400 hover:text-white text-sm transition-colors">Portofolio</a>
+                <a href="#contact" class="text-slate-400 hover:text-white text-sm transition-colors">Kontak</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal Popup -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-opacity">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modalContent">
+                <!-- Dynamic Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Message Notification Container -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-3 pointer-events-none"></div>
+
+    <script>
+        // Project Data array for dynamic modal viewing
+        const projectsData = [
+            {
+                title: "SaaS Analytics Platform",
+                category: "Web Application",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                description: "Platform analitik bisnis tingkat tinggi yang memberikan visualisasi data grafik penjualan, traffic pengunjung, dan konversi pengguna secara realtime.",
+                features: ["Chart Interaktif dengan Chart.js", "Otentikasi Multi-faktor (MFA)", "Ekspor Data PDF & Excel Automated", "Dark & Light Mode Integration"],
+                techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "Prisma ORM", "PostgreSQL"],
+                liveUrl: "https://example.com",
+                githubUrl: "https://github.com"
+            },
+            {
+                title: "Smart Wallet Manager",
+                category: "Mobile Application",
+                image: "https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=800&q=80",
+                description: "Aplikasi keuangan personal lintas platform untuk manajemen anggaran bulanan, scanning nota via AI, dan analisis pengeluaran otomatis.",
+                features: ["QRIS Payment Integration", "Push Notification Tagihan", "Enkripsi Data Biometrik", "Laporan Keuangan Bulanan"],
+                techStack: ["React Native", "Expo", "Redux Toolkit", "Node.js", "Firebase"],
+                liveUrl: "https://example.com",
+                githubUrl: "https://github.com"
+            },
+            {
+                title: "Wanderlust Booking App",
+                category: "UI/UX Design Concept",
+                image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
+                description: "Studi kasus UX dan desain antarmuka aplikasi pemesanan tur dan penginapan alam dengan alur pemesanan serba 3-klik.",
+                features: ["Design System 50+ Komponen", "Interaktif Figma Prototype", "User Journey Map Complete", "Usability Testing Grid"],
+                techStack: ["Figma", "Adobe XD", "Protopie", "UsabilityHub"],
+                liveUrl: "https://dribbble.com",
+                githubUrl: "https://github.com"
+            }
+        ];
+
+        // Theme Toggle Functionality
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const mobileThemeToggleBtn = document.getElementById('mobileThemeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                updateIcons(false);
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                updateIcons(true);
+            }
+        }
+
+        function updateIcons(isDark) {
+            const iconClass = isDark ? 'fa-sun' : 'fa-moon';
+            themeIcon.className = `fa-solid ${iconClass} text-lg`;
+            mobileThemeIcon.className = `fa-solid ${iconClass}`;
+        }
+
+        // Apply saved theme on page load
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+            updateIcons(false);
+        } else {
+            document.documentElement.classList.add('dark');
+            updateIcons(true);
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+        // Typewriter Effect
+        const words = ["Siswa XII TKJ", "Network Administrator", "Linux SysAdmin", "Web Developer"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterEl = document.getElementById('typewriter');
+
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typewriterEl.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterEl.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (words.length) setTimeout(type, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                menuIcon.className = 'fa-solid fa-xmark text-xl';
+            }
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-xl';
+            });
+        });
+
+        // Project Portfolio Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-gradient-to-r', 'from-brand-600', 'to-pink-600', 'text-white', 'shadow-md');
+                    b.classList.add('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-slate-800');
+                });
+
+                btn.classList.remove('bg-white', 'dark:bg-slate-900', 'text-slate-600', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-slate-800');
+                btn.classList.add('bg-gradient-to-r', 'from-brand-600', 'to-pink-600', 'text-white', 'shadow-md');
+
+                const filterValue = btn.getAttribute('data-category');
+
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Project Details Modal Open & Close
+        function openProjectModal(index) {
+            const data = projectsData[index];
+            if (!data) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="space-y-6">
+                    <img src="${data.image}" alt="${data.title}" class="w-full h-64 sm:h-80 object-cover rounded-2xl">
+                    
+                    <div>
+                        <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider">${data.category}</span>
+                        <h3 class="font-heading font-bold text-2xl text-slate-900 dark:text-white mt-1">${data.title}</h3>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">${data.description}</p>
+
+                    <div>
+                        <h4 class="font-semibold text-slate-900 dark:text-white text-sm mb-2">Fitur Utama:</h4>
+                        <ul class="list-disc list-inside text-xs text-slate-600 dark:text-slate-400 space-y-1">
+                            ${data.features.map(f => `<li>${f}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold text-slate-900 dark:text-white text-sm mb-2">Teknologi Digunakan:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${data.techStack.map(t => `<span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-xs font-medium text-slate-700 dark:text-slate-300">${t}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <a href="${data.liveUrl}" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-pink-600 text-white font-medium text-sm shadow-md hover:shadow-lg transition-all flex items-center space-x-2">
+                            <span>Demo Langsung</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <a href="${data.githubUrl}" target="_blank" class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-all flex items-center space-x-2">
+                            <i class="fa-brands fa-github"></i>
+                            <span>Repository</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Close Modal when clicking background overlay
+        document.getElementById('projectModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('projectModal')) {
+                closeProjectModal();
+            }
+        });
+
+        // Custom Toast Notification
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            
+            const bgColor = type === 'success' 
+                ? 'bg-slate-900 text-white border-emerald-500' 
+                : 'bg-slate-900 text-white border-pink-500';
+
+            const icon = type === 'success' 
+                ? '<i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>' 
+                : '<i class="fa-solid fa-triangle-exclamation text-pink-400 text-lg"></i>';
+
+            toast.className = `pointer-events-auto flex items-center space-x-3 px-5 py-4 rounded-xl shadow-2xl border-l-4 ${bgColor} transition-all duration-300 transform translate-y-5 opacity-0`;
+            toast.innerHTML = `${icon} <span class="text-sm font-medium">${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-5', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // Contact Form Submission Handler
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>Mengirim Pesan...</span>`;
+
+            setTimeout(() => {
+                showToast("Terima kasih! Pesan Anda berhasil dikirim.", "success");
+                contactForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }, 1500);
+        });
+
+        // Download CV trigger notification
+        document.getElementById('downloadCvBtn').addEventListener('click', () => {
+            showToast("Memulai pengunduhan file Curriculum Vitae...", "success");
+        });
+    </script>
+</body>
+</html>
