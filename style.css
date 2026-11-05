@@ -1,0 +1,690 @@
+/* ==========================================================
+   Portofolio: style.css
+   1 Tema    2 Dasar    3 Navigasi    4 Hero    5 Blok dan isi
+   6 Proyek  7 Perjalanan  8 Kontak  9 Footer  10 Responsif
+   ========================================================== */
+
+/* 1. TEMA ---------------------------------------------------
+   Ganti warna di sini. Satu tema = satu blok variabel.
+   Tombol warna di navigasi memakai blok yang sama.           */
+:root,
+[data-theme="pine"] {
+  --bg: #0a1512;
+  --bg-rgb: 10 21 18;
+  --surface: #10201b;
+  --line: rgb(207 240 225 / 0.14);
+  --text: #e9f1ec;
+  --muted: #93a89f;
+  --accent: #ffb48a;
+  --accent-rgb: 255 180 138;
+  --accent-2: #8fe3bf;
+  --accent-3: #f4e3a0;
+  --on-accent: #1a120c;
+}
+
+[data-theme="ember"] {
+  --bg: #120b09;
+  --bg-rgb: 18 11 9;
+  --surface: #1c120e;
+  --line: rgb(255 225 205 / 0.14);
+  --text: #f6ece4;
+  --muted: #b3a196;
+  --accent: #ff7a45;
+  --accent-rgb: 255 122 69;
+  --accent-2: #ffcf70;
+  --accent-3: #ff5d8f;
+  --on-accent: #1a0b05;
+}
+
+[data-theme="orchid"] {
+  --bg: #130a14;
+  --bg-rgb: 19 10 20;
+  --surface: #1c1020;
+  --line: rgb(255 215 245 / 0.14);
+  --text: #f8ecf6;
+  --muted: #b69cb4;
+  --accent: #ff9bd7;
+  --accent-rgb: 255 155 215;
+  --accent-2: #ffd9a0;
+  --accent-3: #b9a4ff;
+  --on-accent: #1d0a1a;
+}
+
+:root {
+  --font-display: "Unbounded", "Figtree", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --wrap: 1140px;
+  --gutter: clamp(1.25rem, 4vw, 2rem);
+  --nav-h: 4.25rem;
+}
+
+/* 2. DASAR -------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+  transition: background-color 0.5s ease;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--text);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.is-locked { overflow: hidden; }
+
+h1, h2, h3, p, ul, ol, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2 { text-wrap: balance; }
+a { color: inherit; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+::selection { background: var(--accent); color: var(--on-accent); }
+
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 1rem; }
+
+.wrap {
+  width: min(var(--wrap), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+/* Kanvas 3D: opacity diatur oleh script.js */
+#stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+}
+
+main,
+.site-footer { position: relative; z-index: 1; }
+
+/* Cadangan kalau WebGL tidak tersedia */
+.no-webgl #stage { display: none; }
+.no-webgl body {
+  background: radial-gradient(50% 40% at 75% 25%, rgb(var(--accent-rgb) / 0.16), transparent 70%);
+}
+
+/* 3. NAVIGASI ---------------------------------------------- */
+.site-nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: var(--nav-h);
+}
+
+/* Latar blur dipasang di pseudo-element supaya menu mobile
+   (position: fixed) tidak ikut terkurung oleh backdrop-filter. */
+.site-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-bottom: 1px solid var(--line);
+  background: rgb(var(--bg-rgb) / 0.78);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.site-nav.is-scrolled::before { opacity: 1; }
+
+.site-nav__bar {
+  position: relative;
+  z-index: 1;
+  width: min(var(--wrap), 100% - 2 * var(--gutter));
+  height: 100%;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.site-nav__menu ul {
+  display: flex;
+  gap: clamp(1rem, 2.4vw, 2rem);
+}
+
+.site-nav__menu a {
+  position: relative;
+  display: inline-block;
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.site-nav__menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.1rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+.site-nav__menu a:hover,
+.site-nav__menu a.is-active { color: var(--text); }
+.site-nav__menu a:hover::after,
+.site-nav__menu a.is-active::after { transform: scaleX(1); }
+
+.site-nav__tools {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+/* Tombol warna: tiap tombol memakai variabel temanya sendiri */
+.swatches { display: flex; gap: 0.5rem; }
+.swatches button {
+  width: 1.15rem;
+  height: 1.15rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 50%, var(--accent-2) 50%);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s ease;
+}
+.swatches button:hover { transform: scale(1.15); }
+.swatches button[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--text);
+}
+
+.menu-toggle {
+  display: none;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: none;
+}
+.menu-toggle span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1rem;
+  height: 1.5px;
+  background: var(--text);
+  transition: transform 0.3s var(--ease);
+}
+.menu-toggle span:first-child { transform: translate(-50%, -4px); }
+.menu-toggle span:last-child { transform: translate(-50%, 3px); }
+.menu-toggle[aria-expanded="true"] span:first-child { transform: translate(-50%, -50%) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:last-child { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* 4. HERO ---------------------------------------------------
+   Satu momen pembuka: judul naik per baris, lalu isi lainnya
+   muncul. Bola 3D di latar adalah elemen utama halaman.       */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--nav-h) + 2rem) 0 4rem;
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.35rem, 6.4vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.hero__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.hero__line > span {
+  display: block;
+  animation: rise 1s var(--ease) both;
+}
+.hero__line:nth-child(2) > span { animation-delay: 0.12s; }
+.hero__line:nth-child(3) > span { animation-delay: 0.24s; }
+
+@keyframes rise { from { transform: translateY(105%); } }
+@keyframes fade { from { opacity: 0; transform: translateY(12px); } }
+
+.hero__role,
+.hero__lead,
+.hero__actions,
+.hero__status { animation: fade 0.9s var(--ease) both; }
+
+.hero__role {
+  margin-top: 1.6rem;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 600;
+  color: var(--accent);
+  animation-delay: 0.55s;
+}
+.hero__lead {
+  max-width: 34rem;
+  margin-top: 0.9rem;
+  color: var(--muted);
+  animation-delay: 0.65s;
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  animation-delay: 0.75s;
+}
+.hero__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 2rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+  animation-delay: 0.85s;
+}
+.dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 0 4px var(--line);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s var(--ease);
+}
+.button--solid { background: var(--accent); color: var(--on-accent); }
+.button--solid:hover { background: var(--accent-2); transform: translateY(-1px); }
+.button--line { border-color: var(--line); color: var(--text); }
+.button--line:hover { border-color: var(--accent); color: var(--accent); }
+
+/* 5. BLOK DAN ISI ------------------------------------------ */
+.block {
+  padding: clamp(4rem, 9vw, 7rem) 0;
+  border-top: 1px solid var(--line);
+}
+
+.block__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(1.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.block__title {
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.block__title--inline { position: static; }
+
+.block__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.prose {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 36rem;
+  font-size: 1.125rem;
+}
+
+.facts {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+.facts > div,
+.skill-row {
+  display: grid;
+  grid-template-columns: minmax(7rem, 11rem) 1fr;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.facts dt { color: var(--muted); }
+.facts dd { font-weight: 500; }
+
+.skill-row { padding: 1.4rem 0; }
+.skill-row:first-child { border-top: 1px solid var(--line); }
+.skill-row h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.skill-row ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.6rem;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+/* 6. PROYEK ------------------------------------------------- */
+.filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.filters button {
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+.filters button:hover { color: var(--text); border-color: var(--muted); }
+.filters button.is-active {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+.project--feature { grid-column: span 2; }
+.project[hidden] { display: none; }
+
+.project__tilt {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  background: var(--surface);
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s var(--ease), border-color 0.3s ease;
+}
+.project__tilt:hover { border-color: var(--accent); }
+
+/* Tempat gambar proyek. Ganti dengan <img> kalau sudah ada. */
+.project__art {
+  position: relative;
+  flex: 1 0 auto; /* kalau kartu lebih tinggi dari isinya, gambar yang mengisi sisa tinggi */
+  aspect-ratio: 16 / 9;
+  background:
+    radial-gradient(60% 90% at var(--x, 20%) var(--y, 30%), rgb(var(--accent-rgb) / 0.8), transparent 70%),
+    radial-gradient(55% 80% at calc(100% - var(--x, 20%)) calc(100% - var(--y, 30%)), var(--accent-2), transparent 72%),
+    linear-gradient(var(--rot, 30deg), var(--surface), var(--bg));
+}
+.project__art img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project__info {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.25rem 1.35rem 1.4rem;
+}
+.project__info h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+.project__info p { color: var(--muted); font-size: 0.98rem; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.4rem;
+}
+.tags li {
+  padding: 0.15rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.project__links { display: flex; gap: 1.1rem; font-weight: 600; font-size: 0.95rem; }
+.project__links a { color: var(--accent); text-underline-offset: 0.25em; }
+.project__links a:hover { color: var(--accent-2); }
+
+/* 7. PERJALANAN -------------------------------------------- */
+.timeline {
+  display: grid;
+  gap: 2.25rem;
+  max-width: 40rem;
+  padding-left: 1.75rem;
+  border-left: 1px solid var(--line);
+}
+.timeline li { position: relative; }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.75rem - 4.5px);
+  top: 0.55rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.timeline__when {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.timeline h3 {
+  margin-top: 0.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.timeline p {
+  max-width: 34rem;
+  margin-top: 0.4rem;
+  color: var(--muted);
+}
+
+/* 8. KONTAK ------------------------------------------------- */
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+}
+.contact__lead { max-width: 28rem; font-size: 1.125rem; }
+.contact__mail {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  text-underline-offset: 0.3em;
+  overflow-wrap: anywhere;
+}
+.contact__mail:hover { color: var(--accent-2); }
+
+.links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin-top: 1.5rem; }
+.links a { color: var(--muted); text-underline-offset: 0.25em; }
+.links a:hover { color: var(--text); }
+
+.form { display: grid; gap: 1.4rem; }
+.field { display: grid; gap: 0.35rem; }
+.field span { font-size: 0.9rem; color: var(--muted); }
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.65rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.field textarea { min-height: 7rem; resize: vertical; }
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-bottom-color: var(--accent);
+  box-shadow: 0 1px 0 var(--accent);
+}
+.form .button { justify-self: start; }
+.form__note { min-height: 1.5em; font-size: 0.95rem; color: var(--accent-2); }
+
+/* 9. FOOTER -------------------------------------------------- */
+.site-footer {
+  padding: 2rem 0 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+}
+
+/* 10. RESPONSIF DAN AKSESIBILITAS -------------------------- */
+/* Layar sempit atau tinggi: bola 3D ditaruh di atas teks, jadi teks turun ke bawah
+   dan ruang di atasnya disisakan. Aturan yang sama ada di CONFIG.stackQuery (script.js). */
+@media (max-aspect-ratio: 9/10), (max-width: 825.98px) {
+  .hero {
+    align-items: flex-end;
+    padding-top: calc(var(--nav-h) + clamp(9rem, 54vw, 17rem));
+    padding-bottom: 3.5rem;
+  }
+}
+
+/* Tanpa WebGL tidak ada bola, jadi ruang di atas teks tidak perlu disisakan */
+.no-webgl .hero { padding-top: calc(var(--nav-h) + 2rem); }
+
+@media (max-width: 960px) {
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 860px) {
+  .block__grid,
+  .contact { grid-template-columns: 1fr; }
+  .block__title { position: static; }
+
+  .menu-toggle { display: block; }
+
+  .site-nav__menu {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    display: grid;
+    align-content: center;
+    padding: calc(var(--nav-h) + 1rem) var(--gutter) 3rem;
+    background: var(--bg);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .site-nav__menu.is-open { opacity: 1; visibility: visible; }
+  .site-nav__menu ul { flex-direction: column; gap: 0.25rem; }
+  .site-nav__menu a {
+    padding: 0.6rem 0;
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    color: var(--text);
+  }
+}
+
+@media (max-width: 640px) {
+  .projects { grid-template-columns: 1fr; }
+  .project--feature { grid-column: auto; }
+  .facts > div,
+  .skill-row { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001ms !important;
+  }
+}
