@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="pine">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rifqi Muhammad Aliiya | Portofolio</title>
+  <meta name="description" content="Portofolio Rifqi Muhammad Aliiya, Frontend Developer lulusan baru yang membangun antarmuka web interaktif dengan animasi dan 3D." />
+  <meta name="theme-color" content="#0a1512" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23ffb48a'/%3E%3Ccircle cx='12' cy='11' r='6' fill='%238fe3bf' fill-opacity='.75'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten utama</a>
+
+  <!-- Scene 3D (digambar oleh script.js lewat Three.js) -->
+  <canvas id="stage" aria-hidden="true"></canvas>
+
+  <header class="site-nav">
+    <div class="site-nav__bar">
+      <a class="brand" href="#hero" aria-label="Rifqi, kembali ke atas">Rifqi</a>
+
+      <nav class="site-nav__menu" id="menu" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#skills">Skill</a></li>
+          <li><a href="#projects">Proyek</a></li>
+          <li><a href="#journey">Perjalanan</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-nav__tools">
+        <div class="swatches" role="group" aria-label="Pilih warna tema">
+          <button type="button" data-theme="pine" aria-label="Tema pine" aria-pressed="true"></button>
+          <button type="button" data-theme="ember" aria-label="Tema ember" aria-pressed="false"></button>
+          <button type="button" data-theme="orchid" aria-label="Tema orchid" aria-pressed="false"></button>
+        </div>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Buka menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="wrap hero__inner">
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__line"><span>Rifqi</span></span>
+          <span class="hero__line"><span>Muhammad</span></span>
+          <span class="hero__line"><span>Aliiya</span></span>
+        </h1>
+        <p class="hero__role">Frontend Developer, fresh graduate.</p>
+        <p class="hero__lead">Saya mengubah desain menjadi antarmuka web yang rapi, cepat, dan nyaman dipakai, dengan sentuhan animasi dan 3D lewat WebGL.</p>
+        <div class="hero__actions">
+          <a class="button button--solid" href="#projects">Lihat proyek</a>
+          <a class="button button--line" href="#contact">Hubungi saya</a>
+        </div>
+        <p class="hero__status"><span class="dot" aria-hidden="true"></span>Terbuka untuk peluang kerja</p>
+      </div>
+    </section>
+
+    <!-- TENTANG (teks di bawah ini contoh: ganti dengan ceritamu) -->
+    <section class="block" id="about" aria-labelledby="about-title">
+      <div class="wrap block__grid">
+        <h2 class="block__title" id="about-title">Tentang saya</h2>
+        <div class="block__body">
+          <div class="prose">
+            <p>Saya Frontend Developer lulusan baru. Saya paling suka bagian pekerjaan yang langsung dirasakan pengguna: tata letak yang responsif, interaksi yang jelas, dan animasi yang punya tujuan.</p>
+            <p>Di luar tugas harian, saya bereksperimen dengan WebGL dan Three.js untuk membuat tampilan yang terasa hidup tanpa mengorbankan kecepatan.</p>
+          </div>
+          <dl class="facts">
+            <div><dt>Fokus</dt><dd>Frontend dan antarmuka interaktif</dd></div>
+            <div><dt>Teknologi inti</dt><dd>HTML, CSS, JavaScript, React</dd></div>
+            <div><dt>Minat</dt><dd>Animasi web dan WebGL</dd></div>
+            <div><dt>Status</dt><dd>Terbuka untuk peluang kerja</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILL -->
+    <section class="block" id="skills" aria-labelledby="skills-title">
+      <div class="wrap block__grid">
+        <h2 class="block__title" id="skills-title">Skill dan alat</h2>
+        <div class="block__body">
+          <div class="skill-row">
+            <h3>Frontend</h3>
+            <ul>
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li><li>Next.js</li><li>Tailwind CSS</li>
+            </ul>
+          </div>
+          <div class="skill-row">
+            <h3>Kreatif</h3>
+            <ul>
+              <li>Three.js</li><li>WebGL</li><li>GSAP</li><li>Figma</li>
+            </ul>
+          </div>
+          <div class="skill-row">
+            <h3>Alat kerja</h3>
+            <ul>
+              <li>Git dan GitHub</li><li>VS Code</li><li>npm</li><li>Vercel</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYEK
+         CONTOH: ganti judul, deskripsi, tag, dan tautan dengan proyekmu.
+         Untuk gambar asli, ganti <div class="project__art"> dengan
+         <div class="project__art"><img src="gambar.jpg" alt="Deskripsi" /></div> -->
+    <section class="block" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="block__head">
+          <h2 class="block__title block__title--inline" id="projects-title">Proyek</h2>
+          <div class="filters" role="group" aria-label="Filter proyek">
+            <button type="button" data-filter="all" class="is-active" aria-pressed="true">Semua</button>
+            <button type="button" data-filter="web" aria-pressed="false">Web</button>
+            <button type="button" data-filter="ui" aria-pressed="false">UI</button>
+            <button type="button" data-filter="3d" aria-pressed="false">3D</button>
+          </div>
+        </div>
+
+        <div class="projects">
+          <article class="project project--feature" data-category="web 3d">
+            <div class="project__tilt" data-tilt>
+              <div class="project__art" style="--x: 24%; --y: 32%; --rot: 28deg" aria-hidden="true"></div>
+              <div class="project__info">
+                <h3>Portofolio interaktif</h3>
+                <p>Situs portofolio dengan scene 3D yang bereaksi pada gerakan kursor.</p>
+                <ul class="tags"><li>JavaScript</li><li>Three.js</li></ul>
+                <p class="project__links"><a href="#">Demo</a><a href="#">Kode</a></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" data-category="web ui">
+            <div class="project__tilt" data-tilt>
+              <div class="project__art" style="--x: 70%; --y: 26%; --rot: 200deg" aria-hidden="true"></div>
+              <div class="project__info">
+                <h3>Dashboard analitik</h3>
+                <p>Dasbor ringkas dengan grafik dan filter data, tampil rapi di ponsel maupun desktop.</p>
+                <ul class="tags"><li>React</li><li>Chart.js</li></ul>
+                <p class="project__links"><a href="#">Demo</a><a href="#">Kode</a></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" data-category="ui">
+            <div class="project__tilt" data-tilt>
+              <div class="project__art" style="--x: 30%; --y: 70%; --rot: 120deg" aria-hidden="true"></div>
+              <div class="project__info">
+                <h3>Redesain toko online</h3>
+                <p>Alur belanja yang dipersingkat agar checkout lebih cepat di layar kecil.</p>
+                <ul class="tags"><li>Figma</li><li>Prototipe</li></ul>
+                <p class="project__links"><a href="#">Studi kasus</a></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" data-category="web">
+            <div class="project__tilt" data-tilt>
+              <div class="project__art" style="--x: 62%; --y: 58%; --rot: 300deg" aria-hidden="true"></div>
+              <div class="project__info">
+                <h3>Aplikasi catatan</h3>
+                <p>Catatan dengan pencarian cepat dan penyimpanan lokal di browser.</p>
+                <ul class="tags"><li>JavaScript</li><li>LocalStorage</li></ul>
+                <p class="project__links"><a href="#">Demo</a><a href="#">Kode</a></p>
+              </div>
+            </div>
+          </article>
+
+          <article class="project" data-category="3d">
+            <div class="project__tilt" data-tilt>
+              <div class="project__art" style="--x: 40%; --y: 20%; --rot: 60deg" aria-hidden="true"></div>
+              <div class="project__info">
+                <h3>Visualisasi partikel</h3>
+                <p>Eksperimen partikel WebGL yang mengikuti gerakan kursor.</p>
+                <ul class="tags"><li>WebGL</li><li>Canvas</li></ul>
+                <p class="project__links"><a href="#">Demo</a><a href="#">Kode</a></p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERJALANAN (isi yang bertanda [ ] adalah contoh: ganti dengan datamu) -->
+    <section class="block" id="journey" aria-labelledby="journey-title">
+      <div class="wrap block__grid">
+        <h2 class="block__title" id="journey-title">Perjalanan</h2>
+        <div class="block__body">
+          <ol class="timeline">
+            <li>
+              <span class="timeline__when">Sekarang</span>
+              <h3>Mencari peluang pertama sebagai Frontend Developer</h3>
+              <p>Membangun portofolio dan berlatih lewat proyek-proyek kecil.</p>
+            </li>
+            <li>
+              <span class="timeline__when">[Tahun]</span>
+              <h3>Lulus dari [Nama kampus]</h3>
+              <p>[Jurusan]. Tulis satu kalimat tentang tugas akhir atau fokus belajarmu.</p>
+            </li>
+            <li>
+              <span class="timeline__when">[Tahun]</span>
+              <h3>[Magang, kelas, atau proyek tim]</h3>
+              <p>Tulis apa yang kamu kerjakan dan hasilnya.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section class="block" id="contact" aria-labelledby="contact-title">
+      <div class="wrap block__grid">
+        <h2 class="block__title" id="contact-title">Mari bicara</h2>
+        <div class="block__body contact">
+          <div class="contact__intro">
+            <p class="contact__lead">Punya lowongan, proyek, atau sekadar ingin menyapa? Kirim pesan, saya balas secepatnya.</p>
+            <a class="contact__mail" href="mailto:email@contoh.com" data-email>email@contoh.com</a>
+            <ul class="links">
+              <li><a href="#" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            </ul>
+          </div>
+
+          <form class="form" id="contact-form">
+            <label class="field"><span>Nama</span><input type="text" name="name" autocomplete="name" required /></label>
+            <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email" required /></label>
+            <label class="field"><span>Pesan</span><textarea name="message" rows="4" required></textarea></label>
+            <button class="button button--solid" type="submit">Kirim lewat email</button>
+            <p class="form__note" id="form-note" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p>&copy; <span id="year">2026</span> Rifqi Muhammad Aliiya</p>
+      <p>Dibuat dengan HTML, CSS, JavaScript, dan Three.js.</p>
+    </div>
+  </footer>
+</body>
+</html>
